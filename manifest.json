@@ -1,0 +1,13 @@
+{
+"manifest_version": 3,
+"name": "Consolidador de Notas SEFAZ AM",
+"version": "1.0",
+"description": "Soma produtos de notas fiscais da Sefaz e exporta para Excel.",
+"permissions": [
+"activeTab",
+"scripting"
+],
+"action": {
+"default_popup": "popup.html"
+}
+}
