@@ -1,10 +1,12 @@
+// Ativa a função de exportação quando o botão é clicado
 document.getElementById('btnExportar').addEventListener('click', async () => {
     const statusDiv = document.getElementById('status');
     statusDiv.textContent = "Lendo página...";
-  
+    // Obtém a aba ativa (que é a página da Sefaz)
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     
     // Injeta a função na página da Sefaz
+    // A função rasparDadosSefaz será executada dentro da aba ativa
     chrome.scripting.executeScript({
       target: { tabId: tab.id, allFrames: true },
       func: rasparDadosSefaz
