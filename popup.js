@@ -1,21 +1,30 @@
+const btn = document.getElementById('btnExportar');
+const statusDiv = document.getElementById('status');
+
+function setLoading(loading) {
+  btn.disabled = loading;
+  btn.classList.toggle('loading', loading);
+}
+
+function setStatus(text, type = '') {
+  statusDiv.textContent = text;
+  statusDiv.className = type; // '', 'loading', 'success', 'error'
+}
+
 // Ativa a função de exportação quando o botão é clicado
 document.getElementById('btnExportar').addEventListener('click', async () => {
-    const statusDiv = document.getElementById('status');
-    statusDiv.textContent = "Lendo página...";
-    // Obtém a aba ativa (que é a página da Sefaz)
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    
-    // Injeta a função na página da Sefaz
-    // A função rasparDadosSefaz será executada dentro da aba ativa
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id, allFrames: true },
-      func: rasparDadosSefaz
-    }, (resultados) => {
-  
-      if (!resultados || resultados.length === 0) {
-        statusDiv.textContent = "Erro ao ler a página.";
-        return;
-      }
+  setLoading(true);
+  setStatus('Lendo página...', 'loading');
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id, allFrames: true },
+    func: rasparDadosSefaz
+  }, (resultados) => {
+    setLoading(false);
+    if (!resultados || resultados.length === 0) {
+      setStatus('Erro ao ler a página.', 'error');
+      return;
+    }
       
       let dadosExtraidos = null;
       
@@ -29,15 +38,14 @@ document.getElementById('btnExportar').addEventListener('click', async () => {
       }
   
       if (!dadosExtraidos) {
-        statusDiv.textContent = "Nenhum produto encontrado. Tem certeza que é uma NF da SEFAZ?";
-        return;
-      }
-  
-      statusDiv.textContent = "Gerando planilha Excel...";
-      gerarPlanilhaExcel(dadosExtraidos);
-      statusDiv.textContent = "Planilha baixada!";
-    });
+      setStatus('Nenhum produto encontrado. Tem certeza que é uma NF da SEFAZ?', 'error');
+      return;
+    }
+    setStatus('Gerando planilha Excel...', 'loading');
+    gerarPlanilhaExcel(dadosExtraidos);
+    setStatus('Planilha baixada com sucesso!', 'success');
   });
+});
   
   // =========================================================================
   // Função que roda DENTRO da página da Sefaz
