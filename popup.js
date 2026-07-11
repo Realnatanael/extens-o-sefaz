@@ -1,11 +1,14 @@
+// =========================================================================
+// popup.js - Script do popup da extensão
+// =========================================================================
 const btn = document.getElementById('btnExportar');
 const statusDiv = document.getElementById('status');
-
+// Função para atualizar o estado do botão e a mensagem de status
 function setLoading(loading) {
   btn.disabled = loading;
   btn.classList.toggle('loading', loading);
 }
-
+// Função para atualizar a mensagem de status
 function setStatus(text, type = '') {
   statusDiv.textContent = text;
   statusDiv.className = type; // '', 'loading', 'success', 'error'
@@ -36,7 +39,7 @@ document.getElementById('btnExportar').addEventListener('click', async () => {
           break;
         }
       }
-  
+      // Se não encontrou nenhum resultado válido, mostra mensagem de erro
       if (!dadosExtraidos) {
       setStatus('Nenhum produto encontrado. Tem certeza que é uma NF da SEFAZ?', 'error');
       return;
