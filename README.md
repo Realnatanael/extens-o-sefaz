@@ -7,12 +7,12 @@ uma extensão para google chrome criada para automatizar a leitura e consolidaç
 antes o processo era manual e suscetível a erros, agora é possivel somar os valores totais por produto evalor, direcionados a uma planilha do excel.
 
 ## O que a extensão faz:
-1. le o HTML da nota fiscal na pagina da SEFAZ.
-2. extrai linha a linha os produtos, quantidades e valores.
-3. Gera um relatório contendo:
-- a lista detalhada de cada item da nota
-- um resumo consolidado com a soma das quantidades (litros) e valores por tipo de produto.
-- o total geral da nota.
+* le o HTML da nota fiscal na pagina da SEFAZ.
+* extrai linha a linha os produtos, quantidades e valores.
+* Gera um relatório contendo: 
+  a lista detalhada de cada item da nota
+  um resumo consolidado com a soma das quantidades (litros) e valores por tipo de produto.
+  o total geral da nota.
 
 ## Como instalar:
 1. Baixe os arquivos desse repositório;
