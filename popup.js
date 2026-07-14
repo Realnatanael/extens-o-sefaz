@@ -31,7 +31,7 @@ document.getElementById('btnExportar').addEventListener('click', async () => {
       
       let dadosExtraidos = null;
       
-      // Procura o resultado válido em todos os frames
+      // Procura o resultado válido em todos os frames 
       for (const res of resultados) {
         // Agora verificamos se retornou a nossa lista de "itens" e se ela tem algo dentro
         if (res.result && res.result.itens && res.result.itens.length > 0) {
@@ -53,13 +53,13 @@ document.getElementById('btnExportar').addEventListener('click', async () => {
   // =========================================================================
   // Função que roda DENTRO da página da Sefaz
   // =========================================================================
-  function rasparDadosSefaz() {
+  function rasparDadosSefaz() { // Esta função é injetada na página da Sefaz e roda lá
     const linhasProdutos = document.querySelectorAll('#tabResult tr');
     
     // Agora criamos duas variáveis: uma lista para os itens e um objeto para os totais
     const listaItens = []; 
     const resumo = {};
-  
+    // Loop por cada linha da tabela de produtos
     linhasProdutos.forEach((linha) => {
       // 1. Extrai o nome do produto
       const elNome = linha.querySelector('.txtTit');
@@ -67,7 +67,7 @@ document.getElementById('btnExportar').addEventListener('click', async () => {
       
       const nomeProduto = elNome.textContent.trim();
   
-      // 2. Extrai a Quantidade
+      // 2. Extrai a Quantidade 
       const elQtd = linha.querySelector('.Rqtd');
       let qtd = 0;
       if (elQtd) {

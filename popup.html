@@ -6,7 +6,7 @@
     * {
       box-sizing: border-box;
     }
-
+    /* Removendo o min-height fixo e ajustando a largura da janela */
     html, body {
   width: 340px;
   margin: 0;
@@ -38,7 +38,7 @@ body {
       background: rgba(255, 255, 255, 0.08);
       pointer-events: none;
     }
-
+    /* Ajustando o tamanho e posição dos círculos decorativos */
     .container::before {
       width: 120px;
       height: 120px;
@@ -63,19 +63,19 @@ body {
       padding: 24px 20px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     }
-
+    /* Estilizando o cabeçalho do card */
     .header {
       text-align: center;
       margin-bottom: 20px;
     }
-
+    /* Ícone com animação de flutuação */
     .icon {
       font-size: 36px;
       margin-bottom: 8px;
       display: block;
       animation: float 3s ease-in-out infinite;
     }
-
+    /* Animação de flutuação do ícone */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50%      { transform: translateY(-4px); }
@@ -167,7 +167,7 @@ body {
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
     }
-
+    
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
